@@ -48,7 +48,7 @@ jobs:
       - checkout
       - run:
             name: Set env vars
-            command: gh release create
+            command: ""
             environment:
               APP_VERSION: grep '"version"' package.json | cut -d '"' -f 4 | head -n 1'
         
