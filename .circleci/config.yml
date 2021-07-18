@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.5.1
-
+  gh: circleci/github-cli@1.0.3
 jobs:
   lint-and-test:
     docker:
@@ -16,8 +16,6 @@ jobs:
           node-version: 14.15.1
           npm-version: 7.12.0
       - node/install-packages:
-          override-ci-command: yarn install --frozen-lockfile
-      - run:
           name: Lint
           command: yarn lint
       - run:
@@ -35,11 +33,23 @@ jobs:
           install-yarn: true
           node-version: 14.15.1
           npm-version: 7.12.0
-      - node/install-packages:
-          override-ci-command: yarn install --frozen-lockfile
+      - node/install-packages
       - run:
           name: Build
-          command: yarn build
+          command: npm run build
+
+    create_release:
+      steps:
+        - checkout
+        - run:
+            name: Set env vars
+            command: |
+              echo 'export APP_VERSION=grep '"version"' package.json | cut -d '"' -f 4 | head -n 1' >> $BASH_ENV
+        - run:
+            name: show war
+            command: |
+              source $BASH_ENV
+
 
 workflows:
   run_ci:
