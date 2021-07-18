@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.5.1
-  gh: circleci/github-cli@1.0.3
+  github-release: unmadeworks/github-release@1.4.0
 jobs:
   lint-and-test:
     docker:
@@ -40,23 +40,22 @@ jobs:
       - run:
           name: Build
           command: yarn build    
+          
+  create_release:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - github-release/github-release:
+          REPO_NAME: vl-tuning-new
+      
+
 
 workflows:
   run_ci:
     jobs:
-      - node/test
-      - gh/release:
-          context:
-            - GITHUB_CREDS
-          filters:
-            branches:
-              only:
-                - main
-          notes-file: changelog.md
-          requires:
-            - node/test
-          tag: 1.0.0
-          title: The initial release
+      - create_release
+      # - node/test
+      
       # - lint-and-test
       # - build:
       #     requires:
