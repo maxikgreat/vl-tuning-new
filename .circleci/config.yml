@@ -40,25 +40,11 @@ jobs:
       - run:
           name: Build
           command: yarn build    
-          
-  create_release:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - github-release/release
   
 workflows:
   run_ci:
-    jobs:
-      - create_release:
-          filters:
-            branches:
-              only:
-                - main
-      
-      # - node/test
-      
-      # - lint-and-test
-      # - build:
-      #     requires:
-      #       - lint-and-test
+    jobs:  
+      - lint-and-test
+      - build:
+          requires:
+            - lint-and-test
