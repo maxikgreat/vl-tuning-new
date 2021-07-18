@@ -39,30 +39,13 @@ jobs:
           override-ci-command: yarn install --frozen-lockfile
       - run:
           name: Build
-          command: yarn build
-
-  create_release:
-    docker:
-      - image: 'cimg/base:stable'
-    steps:
-      - checkout
-      - run:
-            name: Set env vars
-            command: gh release create
-            environment:
-              APP_VERSION: grep '"version"' package.json | cut -d '"' -f 4 | head -n 1'
-        
-      - run:
-          name: show war
-          command: |
-            source APP_VERSION
-
+          command: yarn build    
 
 workflows:
   run_ci:
     jobs:
-       - node/test
-       - gh/release:
+      - node/test
+      - gh/release:
           context:
             - GITHUB_CREDS
           filters:
