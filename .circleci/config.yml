@@ -40,6 +40,13 @@ jobs:
       - run:
           name: Build
           command: yarn build    
+          
+  deploy:
+    docker:
+      - image: 'cimg/base:stable'
+    steps:
+      - checkout
+      - run: curl -X POST $WEBHOOK_DEPLOY_URL
   
 workflows:
   run_ci:
@@ -48,3 +55,8 @@ workflows:
       - build:
           requires:
             - lint-and-test
+      - deploy:
+          context: VL_TUNING_CONTEXT
+          requires:
+            - lint-and-test
+            - build
