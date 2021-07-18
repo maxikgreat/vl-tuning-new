@@ -48,12 +48,14 @@ jobs:
       - checkout
       - run:
             name: Set env vars
-            command: |
-              echo 'export APP_VERSION=grep '"version"' package.json | cut -d '"' -f 4 | head -n 1' >> $BASH_ENV
+            command: gh release create
+            environment:
+              APP_VERSION: grep '"version"' package.json | cut -d '"' -f 4 | head -n 1'
+        
       - run:
           name: show war
           command: |
-            source $BASH_ENV
+            source APP_VERSION
 
 
 workflows:
