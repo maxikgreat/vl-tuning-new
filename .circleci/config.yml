@@ -59,7 +59,8 @@ jobs:
 workflows:
   run_ci:
     jobs:
-      - lint-and-test
-      - build:
-          requires:
-            - lint-and-test
+       - create_release
+      # - lint-and-test
+      # - build:
+      #     requires:
+      #       - lint-and-test
