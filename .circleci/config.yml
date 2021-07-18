@@ -37,7 +37,7 @@ jobs:
       - node/install-packages
       - run:
           name: Build
-          command: npm run build
+          command: yarn build
 
 workflows:
   run_ci:
