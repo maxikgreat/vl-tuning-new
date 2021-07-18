@@ -48,7 +48,7 @@ jobs:
       - checkout
       - run:
             name: Set env vars
-            command: ""
+            command: gh release create
             environment:
               APP_VERSION: grep '"version"' package.json | cut -d '"' -f 4 | head -n 1'
         
@@ -61,7 +61,19 @@ jobs:
 workflows:
   run_ci:
     jobs:
-       - create_release
+       - node/test
+       - gh/release:
+          context:
+            - GITHUB_CREDS
+          filters:
+            branches:
+              only:
+                - main
+          notes-file: changelog.md
+          requires:
+            - node/test
+          tag: 1.0.0
+          title: The initial release
       # - lint-and-test
       # - build:
       #     requires:
