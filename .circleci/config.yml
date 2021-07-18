@@ -46,7 +46,7 @@ jobs:
       - image: 'cimg/base:stable'
     steps:
       - github-release/github-release:
-          REPO_NAME: vl-tuning-new
+          REPO_NAME: vl-tuning-new 
       
 
 
