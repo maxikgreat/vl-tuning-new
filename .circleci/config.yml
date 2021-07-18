@@ -47,13 +47,17 @@ jobs:
     steps:
       - github-release/github-release:
           REPO_NAME: vl-tuning-new 
-      
-
-
+  
 workflows:
   run_ci:
     jobs:
-      - create_release
+      - create_release:
+          context: VL_TUNING_CONTEXT
+          filters:
+            branches:
+              only:
+                - main
+      
       # - node/test
       
       # - lint-and-test
