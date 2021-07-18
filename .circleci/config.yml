@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.5.1
-  github-release: unmadeworks/github-release@1.4.0
+  github-release: duffn/github-release@0.1.0
 jobs:
   lint-and-test:
     docker:
@@ -45,14 +45,12 @@ jobs:
     docker:
       - image: 'cimg/base:stable'
     steps:
-      - github-release/github-release:
-          REPO_NAME: vl-tuning-new 
+      - github-release/release
   
 workflows:
   run_ci:
     jobs:
       - create_release:
-          context: VL_TUNING_CONTEXT 
           filters:
             branches:
               only:
