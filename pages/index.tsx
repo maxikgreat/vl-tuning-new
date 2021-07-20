@@ -1,6 +1,12 @@
 import Head from 'next/head';
+import {useQuery} from '@apollo/client';
+import {VFC} from 'react';
 
-export default function Home() {
+import {withApollo} from 'src/apollo/withApollo';
+import {PRODUCTS_NAMES_QUERY} from 'queries/products';
+
+const Home: VFC = () => {
+	const {data} = useQuery(PRODUCTS_NAMES_QUERY);
 	return (
 		<>
 			<Head>
@@ -9,10 +15,11 @@ export default function Home() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<h1>Hello</h1>
+				<h1>{JSON.stringify(data)}</h1>
 				<h2>Hello2</h2>
-				<h3>heeloooloo3</h3>
 			</main>
 		</>
 	);
-}
+};
+
+export default withApollo(Home);

@@ -20,7 +20,8 @@
       "pages/*": ["pages/*"],
       "images/*": ["public/images/*"],
       "styles/*": ["src/styles/*"],
-      "layout/*": ["src/layout/*"]
+      "layout/*": ["src/layout/*"],
+      "queries/*": ["src/apollo/queries/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
