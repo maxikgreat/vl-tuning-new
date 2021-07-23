@@ -1,13 +1,14 @@
 import Head from 'next/head';
-import {useQuery} from '@apollo/client';
 import {VFC} from 'react';
+import {getDataFromTree} from '@apollo/client/react/ssr';
 
 import {withApollo} from 'src/apollo/withApollo';
-import {PRODUCTS_NAMES_QUERY} from 'queries/products';
+// Import {useProductsNamesQuery} from 'src/apollo/types';
 
-const Home: VFC = () => {
-	const {data} = useQuery(PRODUCTS_NAMES_QUERY);
-	return (
+const Home: VFC = () =>
+// Const {data} = useProductsNamesQuery();
+
+	 (
 		<>
 			<Head>
 				<title>Create Next App</title>
@@ -15,11 +16,9 @@ const Home: VFC = () => {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main>
-				<h1>{JSON.stringify(data)}</h1>
+				{/* <h1>{JSON.stringify(data)}</h1> */}
 				<h2>Hello2</h2>
 			</main>
 		</>
 	);
-};
-
-export default withApollo(Home);
+export default withApollo(Home, {getDataFromTree});
