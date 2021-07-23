@@ -1,12 +1,12 @@
 import {FC} from 'react';
 
-export const MainLayout: FC = () => (
+import {Header} from 'components/Header';
+
+export const MainLayout: FC = ({children}) => (
 	<>
-		<header>
-
-		</header>
+		<Header />
 		<main>
-
+			{children}
 		</main>
 	</>
 );
