@@ -1,7 +1,7 @@
 import {VFC} from 'react';
 import Image from 'next/image';
 
-import Logo from 'images/logo.svg';
+import Logo from 'images/icons/logo.svg';
 
 export const Header: VFC = () => (
 	<header className="flex justify-between items-center p-4">
