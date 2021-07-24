@@ -5,7 +5,7 @@ import {getTitle, getDescription, titleSuffix, defaultTitle, defaultDescription}
 
 describe('Seo', () => {
 	describe('utils', () => {
-	  it('should work correctly', () => {
+		it('should work correctly', () => {
 			expect(getTitle('Awesome Title')).toBe('Awesome Title' + titleSuffix);
 			expect(getTitle()).toBe(defaultTitle + titleSuffix);
 
@@ -15,8 +15,8 @@ describe('Seo', () => {
 	});
 
 	describe('component', () => {
-	  it('should render correctly', () => {
-	    expect(render(<Seo />).baseElement).toBeInTheDocument();
+		it('should render correctly', () => {
+			expect(render(<Seo />).baseElement).toBeInTheDocument();
 		});
 	});
 });
