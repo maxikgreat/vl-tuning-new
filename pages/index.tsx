@@ -3,14 +3,14 @@ import {VFC} from 'react';
 
 // import {withApollo} from 'src/apollo/withApollo';
 import {Seo} from 'components/Seo';
+import {Input} from 'components/Input';
 import {MainLayout} from 'layout/MainLayout';
 // Import {useProductsNamesQuery} from 'src/apollo/types';
 
 const Home: VFC = () => (
 	<MainLayout>
 		<Seo />
-		<main>
-		</main>
+		<Input />
 	</MainLayout>
 );
 

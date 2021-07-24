@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './_loader.css';
 
 body {
     background: url(public/images/main-background.png);
@@ -12,7 +13,6 @@ body {
     transform: translateX(-50%);
 }
 
-.footer {
-    position: absolute;
-    bottom: 3%;
+.top-40p {
+    top: 40%;
 }
