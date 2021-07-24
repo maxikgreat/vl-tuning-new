@@ -21,7 +21,7 @@
       "images/*": ["public/images/*"],
       "styles/*": ["src/styles/*"],
       "layout/*": ["src/layout/*"],
-      "queries/*": ["src/apollo/queries/*"],
+      "apollo/*": ["src/apollo/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
