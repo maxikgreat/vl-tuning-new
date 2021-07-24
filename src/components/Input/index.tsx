@@ -1,6 +1,6 @@
 import {VFC} from 'react';
 import Async from 'react-select/async';
-import {ActionMeta, OptionTypeBase} from 'react-select';
+import {ActionMeta, FocusEventHandler, OptionTypeBase} from 'react-select';
 
 const data = ['Audi', 'BMW', 'Toyota', 'Mercedes-Benz', 'Hyindai', 'Tesla', 'Ford', 'Maserati'] as const;
 
@@ -20,7 +20,17 @@ const getVendor = (inputValue: string): Promise<SelectValue[]> => new Promise(re
 	setTimeout(() => resolve(filterData(inputValue)), 1000);
 });
 
+const blurClassName = 'select-in-focus';
+
 export const Input: VFC = () => {
+	const onFocusHandler: FocusEventHandler = () => {
+		document.body.classList.add(blurClassName);
+	};
+
+	const onBlurHandler: FocusEventHandler = () => {
+		document.body.classList.remove(blurClassName);
+	};
+
 	const onChangeHandler = (value: SelectValue | null, _: ActionMeta<SelectValue>) => {
 		if (!value) {
 			return;
@@ -35,15 +45,18 @@ export const Input: VFC = () => {
 			: 'Нет совпадений';
 
 	return (
-		<div className="absolute absolute-x-center top-40p w-10/12 sm:w-3/5">
+		<div className="main-select absolute absolute-x-center top-40p w-10/12 sm:w-3/5">
 			<Async
 				isClearable
 				loadOptions={getVendor}
 				onChange={onChangeHandler}
 				noOptionsMessage={noOptionMessageHandler}
+				onFocus={onFocusHandler}
+				onBlur={onBlurHandler}
 				placeholder="Выбери марку авто"
 				loadingMessage={() => 'Загрузка'}
 				className="text-xl sm:text-2xl md:text-3xl"
+				classNamePrefix="main-select"
 			/>
 		</div>
 	);
