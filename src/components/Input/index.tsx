@@ -35,9 +35,10 @@ export const Input: VFC = () => {
 			: 'Нет совпадений';
 
 	return (
-		<div className="main-select absolute absolute-x-center top-40p w-10/12 sm:w-3/5">
+		<form data-testid="form" className="main-select absolute absolute-x-center top-40p w-10/12 sm:w-3/5">
 			<Async
 				isClearable
+				name="vendor"
 				loadOptions={getVendor}
 				onChange={onChangeHandler}
 				noOptionsMessage={noOptionMessageHandler}
@@ -46,7 +47,7 @@ export const Input: VFC = () => {
 				className="text-xl sm:text-2xl md:text-3xl"
 				classNamePrefix="main-select"
 			/>
-		</div>
+		</form>
 	);
 };
 
