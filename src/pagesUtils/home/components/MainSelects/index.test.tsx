@@ -1,4 +1,4 @@
-import {render, fireEvent} from '@testing-library/react';
+import {render} from '@testing-library/react';
 import selectEvent from 'react-select-event';
 
 import {MainSelects} from './index';
