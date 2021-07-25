@@ -17,6 +17,6 @@ export const Footer: VFC<FooterProps> = ({isVisible = true}) => isVisible ? (
 				<Image src={Instagram} alt="instgram icon" placeholder="empty" />
 			</a>
 		</div>
-		<span>© VL-Tuning | Все права защищены | 2021</span>
+		<span className="text-center">© VL-Tuning | Все права защищены | 2021</span>
 	</footer>
 ) : null;

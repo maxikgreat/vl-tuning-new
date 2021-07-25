@@ -20,7 +20,3 @@ body {
 .top-40p {
     top: 40%;
 }
-
-/*.select-in-focus > *:not(.main-select) {*/
-/*    filter: blur(5px);*/
-/*}*/
