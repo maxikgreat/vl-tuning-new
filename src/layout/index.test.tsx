@@ -10,9 +10,9 @@ describe('Main layout', () => {
 			</MainLayout>,
 		);
 
-	  expect(container.querySelector('header')).toBeInTheDocument();
-	  expect(container.querySelector('footer')).toBeInTheDocument();
+		expect(container.querySelector('header')).toBeInTheDocument();
+		expect(container.querySelector('footer')).toBeInTheDocument();
 
-	  expect(getByText('Hello')).toBeTruthy();
+		expect(getByText('Hello')).toBeTruthy();
 	});
 });
