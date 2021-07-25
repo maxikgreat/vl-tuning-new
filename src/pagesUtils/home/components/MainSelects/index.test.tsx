@@ -1,22 +1,28 @@
-// Import {render} from '@testing-library/react';
-// Import selectEvent from 'react-select-event';
-// import {MainSelects} from './index';
-export {};
+import {render, fireEvent} from '@testing-library/react';
+import selectEvent from 'react-select-event';
+
+import {MainSelects} from './index';
+
 describe('Input component', () => {
 	it('should work correctly', async () => {
-		// Const {getByTestId} = render(<MainSelects />);
+		const {getByTestId} = render(<MainSelects />);
 
-		// TODO end tests
+		const form = getByTestId('form');
 
-		expect(true).toBe(true);
-		// Expect(getByTestId('form')).toHaveFormValues({vendor: ''});
-		//
-		// const input = getByTestId('form').querySelector('input') as HTMLInputElement;
-		//
-		// await selectEvent.openMenu(input);
-		// await fireEvent.change(input, {target: {value: 'Au'}});
-		// await selectEvent.select(input, ['Audi']);
-		//
-		// expect(getByTestId('form')).toHaveFormValues({vendor: 'Audi'});
+		expect(form).toHaveFormValues({vendor: ''});
+
+		const vendorInput = form.querySelector('input[name="vendor"]') as HTMLInputElement;
+
+		await selectEvent.openMenu(vendorInput);
+		await selectEvent.select(vendorInput, 'Audi');
+
+		expect(form).toHaveFormValues({vendor: 'Audi', model: ''});
+
+		const modelInput = form.querySelector('input[name="model"]') as HTMLInputElement;
+
+		await selectEvent.openMenu(modelInput);
+		await selectEvent.select(modelInput, 'A1');
+
+		expect(form).toHaveFormValues({vendor: 'Audi', model: 'A1'});
 	});
 });
