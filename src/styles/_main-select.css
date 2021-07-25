@@ -15,7 +15,12 @@
     background-color: rgba(255, 255, 255, .75) !important;
 }
 
-.main-select__option--is-focused {
+.main-select__option {
+    color: #4b535f !important;
+}
+
+.main-select__option--is-focused, .main-select__option--is-selected {
+    color: #000 !important;
     background-color: #fff !important;
 }
 

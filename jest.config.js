@@ -19,5 +19,6 @@ module.exports = {
 		'^styles/(.*)$': '<rootDir>/src/styles/$1',
 		'^layout/(.*)$': '<rootDir>/src/layout/$1',
 		'^apollo/(.*)$': '<rootDir>/src/apollo/$1',
+		'^pagesUtils/(.*)$': '<rootDir>/src/pagesUtils/$1',
 	},
 };

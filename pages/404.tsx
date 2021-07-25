@@ -1,11 +1,11 @@
 import {VFC} from 'react';
-import {MainLayout} from 'layout/MainLayout';
-import {Seo} from 'components/Seo';
 
-const Categories: VFC = () => (
+import {MainLayout} from 'layout/MainLayout';
+
+const NotFound: VFC = () => (
 	<MainLayout>
-		<Seo />
+		<h1>Not found page</h1>
 	</MainLayout>
 );
 
-export default Categories;
+export default NotFound;
