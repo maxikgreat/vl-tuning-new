@@ -1,6 +1,6 @@
 import {render} from '@testing-library/react';
 
-import {MainLayout} from './MainLayout';
+import {MainLayout} from './index';
 
 describe('Main layout', () => {
 	it('should render correctly with header and footer and children', () => {

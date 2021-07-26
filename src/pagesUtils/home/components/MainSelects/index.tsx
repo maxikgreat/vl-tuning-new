@@ -67,6 +67,8 @@ export const MainSelects: VFC = () => {
 		onChangeHandler(value, setModel, action);
 	};
 
+	const noOptionMessageHandler = () => 'Нет совпадений';
+
 	return (
 		<form data-testid="form" className="main-select absolute absolute-x-center top-40p w-10/12 sm:w-3/5">
 			<Select
@@ -74,7 +76,7 @@ export const MainSelects: VFC = () => {
 				name="vendor"
 				options={getVendorOptions()}
 				onChange={onChangeVendorHandler}
-				noOptionsMessage={() => 'Нет совпадений'}
+				noOptionsMessage={noOptionMessageHandler}
 				placeholder="Выбери марку авто"
 				className="mb-3 text-xl sm:text-2xl md:text-3xl"
 				classNamePrefix="main-select"
@@ -85,7 +87,7 @@ export const MainSelects: VFC = () => {
 					name="model"
 					options={getModelsOptions(vendor as typeof vendors[number])}
 					onChange={onChangeModelHandler}
-					noOptionsMessage={() => 'Нет совпадений'}
+					noOptionsMessage={noOptionMessageHandler}
 					placeholder="Выбери модель авто"
 					className="text-xl sm:text-2xl md:text-3xl"
 					classNamePrefix="main-select"
