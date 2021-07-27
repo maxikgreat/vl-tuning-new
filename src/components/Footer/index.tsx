@@ -8,7 +8,7 @@ interface FooterProps {
   isVisible?: boolean;
 }
 export const Footer: VFC<FooterProps> = ({isVisible = true}) => isVisible ? (
-	<footer className="flex flex-col items-center absolute absolute-x-center bottom-4">
+	<footer className="flex flex-col items-center absolute left-1/2 bottom-4 transform -translate-x-2/4">
 		<div>
 			<a href="https://facebook.com" target="_blank" rel="nofollow noopener noreferrer">
 				<Image src={Facebook} alt="facebook icon" placeholder="empty" />

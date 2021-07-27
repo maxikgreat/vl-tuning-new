@@ -70,7 +70,7 @@ export const MainSelects: VFC = () => {
 	const noOptionMessageHandler = () => 'Нет совпадений';
 
 	return (
-		<form data-testid="form" className="main-select absolute absolute-x-center top-40p w-10/12 sm:w-3/5">
+		<form data-testid="form" className="main-select absolute left-1/2 transform top-40p -translate-x-2/4 w-10/12 sm:w-3/5">
 			<Select
 				isClearable
 				name="vendor"
