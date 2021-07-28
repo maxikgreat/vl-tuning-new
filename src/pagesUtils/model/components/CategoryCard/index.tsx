@@ -27,7 +27,7 @@ const applyImage = (category: string) => {
 };
 
 export const CategoryCard: VFC<CategoryCardProp> = ({category}) => (
-	<div className="flex h-32 bg-white bg-opacity-60 rounded overflow-hidden">
+	<div className="flex h-32 bg-white bg-opacity-60 rounded overflow-hidden hover:shadow-md cursor-pointer transition-shadow duration-300">
 		<div className="flex flex-1 justify-center items-center p-2">
 			<h3 className="mb-0 sm:mb-5 text-xl text-center">{category}</h3>
 		</div>
