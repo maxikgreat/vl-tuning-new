@@ -13,12 +13,27 @@ interface QueryParams {
 	model: string
 }
 
+const globalStyles = (
+	<style jsx global>{`
+		body {
+			height: 100vh;
+		}
+		
+		@media (max-width: 768px) {
+	    body {
+	      height: 100%;
+	    }
+	  }
+	`}</style>
+);
+
 const Categories: VFC = () => {
 	// @ts-expect-error
 	const {query: {vendor, model}}: {query: QueryParams} = useRouter();
 
 	return (
-		<MainLayout>
+		<MainLayout isFooterAbsolute={false}>
+			{globalStyles}
 			<Seo />
 			<div className="sm:absolute sm:left-1/2 top-1/3 transform-none sm:transform sm:-translate-x-2/4 w-10/12 md:w-3/5 mx-auto my-7 sm:m-0">
 				<h1 className="mb-2 text-3xl">{upperFirst(vendor)} - {upperFirst(model)}</h1>
@@ -29,7 +44,6 @@ const Categories: VFC = () => {
 				</div>
 			</div>
 		</MainLayout>
-
 	);
 };
 

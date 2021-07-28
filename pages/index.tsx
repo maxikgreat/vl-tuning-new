@@ -8,8 +8,17 @@ import {MainSelects} from 'pagesUtils/home/components/MainSelects';
 
 // Import {useProductsNamesQuery} from 'src/apollo/types';
 
+const globalStyles = (
+	<style jsx global>{`
+		body {
+			height: 100vh;
+		}
+	`}</style>
+);
+
 const Home: VFC = () => (
 	<MainLayout>
+		{globalStyles}
 		<Seo />
 		<MainSelects />
 	</MainLayout>

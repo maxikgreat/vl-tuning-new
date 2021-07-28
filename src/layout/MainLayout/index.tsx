@@ -3,12 +3,17 @@ import {FC} from 'react';
 import {Header} from 'components/Header';
 import {Footer} from 'components/Footer';
 
-export const MainLayout: FC = ({children}) => (
+interface MainLayoutProps {
+	globalStyles?: string;
+	isFooterAbsolute?: boolean;
+}
+
+export const MainLayout: FC<MainLayoutProps> = ({children, isFooterAbsolute}) => (
 	<>
 		<Header />
 		<main>
 			{children}
 		</main>
-		<Footer />
+		<Footer isAbsolute={isFooterAbsolute} />
 	</>
 );
