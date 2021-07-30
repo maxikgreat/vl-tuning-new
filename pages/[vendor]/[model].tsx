@@ -19,7 +19,7 @@ const globalStyles = (
 			height: 100vh;
 		}
 		
-		@media (max-width: 768px) {
+		@media (max-width: 640px) {
 	    body {
 	      height: 100%;
 	    }
