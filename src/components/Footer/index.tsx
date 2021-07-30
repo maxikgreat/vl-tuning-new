@@ -32,6 +32,7 @@ export const Footer: VFC<FooterProps> = ({isVisible = true, isAbsolute = true}) 
 
 	return (
 		<footer
+			data-testid="footer-test"
 			className={`flex flex-col items-center ${getClasses(isAbsolute)}`}
 		>
 			<div>

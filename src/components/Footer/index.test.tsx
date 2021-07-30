@@ -4,15 +4,22 @@ import {Footer} from './index';
 
 describe('Footer component', () => {
 	it('should render correctly and match snapshot', () => {
-		const {asFragment, container} = render(<Footer />);
+		const {asFragment, getByTestId} = render(<Footer />);
 
-		expect(container.querySelector('footer')).toBeInTheDocument();
-		expect(asFragment).toMatchSnapshot();
+		expect(getByTestId('footer-test')).toBeInTheDocument();
+		expect(asFragment()).toMatchSnapshot();
 	});
 
 	it('should return null', () => {
-		const {container} = render(<Footer isVisible={false} />);
+		const {queryByTestId} = render(<Footer isVisible={false} />);
 
-		expect(container.querySelector('footer')).toBeFalsy();
+		expect(queryByTestId('footer-test')).toBeFalsy();
+	});
+
+	it('should be with absolute classes', () => {
+		const {getByTestId} = render(<Footer isAbsolute={true} />);
+
+		expect(getByTestId('footer-test').classList.contains('absolute'))
+			.toBe(true);
 	});
 });

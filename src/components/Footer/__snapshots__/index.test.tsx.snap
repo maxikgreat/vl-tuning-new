@@ -1,3 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Footer component should render correctly and match snapshot 1`] = `[Function]`;
+exports[`Footer component should render correctly and match snapshot 1`] = `
+<DocumentFragment>
+  <footer
+    class="flex flex-col items-center absolute left-1/2 bottom-4 transform -translate-x-2/4"
+    data-testid="footer-test"
+  >
+    <div>
+      <a
+        href="https://facebook.com"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="facebook icon"
+          placeholder="empty"
+          src="placeholder-file"
+        />
+      </a>
+      <a
+        href="https://instagram.com"
+        rel="nofollow noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          alt="instgram icon"
+          placeholder="empty"
+          src="placeholder-file"
+        />
+      </a>
+    </div>
+    <span
+      class="text-center"
+    >
+      © VL-Tuning | Все права защищены | 2021
+    </span>
+  </footer>
+</DocumentFragment>
+`;

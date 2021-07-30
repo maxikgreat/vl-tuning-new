@@ -7,6 +7,6 @@ describe('Loader component', () => {
 		const {container, asFragment} = render(<Loader />);
 
 		expect(container.querySelector('.lds-roller')).toBeInTheDocument();
-		expect(asFragment).toMatchSnapshot();
+		expect(asFragment()).toMatchSnapshot();
 	});
 });

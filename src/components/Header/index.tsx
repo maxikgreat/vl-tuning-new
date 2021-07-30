@@ -14,8 +14,12 @@ export const Header: VFC = () => (
 			</div>
 		</Link>
 		<div className="text-base sm:text-xl">
-			<h3 className="mb-0 sm:mb-3"><a href="tel:+380972713473" rel="nofollow noopener noreferrer">+380 97 271 34 73</a></h3>
-			<h3 className="mb-3 sm:mb-0"><a href="mailto:vltuning@gmail.com" rel="nofollow noopener noreferrer">vltuning@gmail.com</a></h3>
+			<h3 className="mb-0 sm:mb-3">
+				<a href="tel:+380972713473" rel="nofollow noopener noreferrer">+380 97 271 34 73</a>
+			</h3>
+			<h3 className="mb-3 sm:mb-0">
+				<a href="mailto:vltuning@gmail.com" rel="nofollow noopener noreferrer">vltuning@gmail.com</a>
+			</h3>
 			<LocationInfo isMobile={true} />
 		</div>
 	</header>

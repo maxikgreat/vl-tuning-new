@@ -7,6 +7,6 @@ describe('Header component', () => {
 		const {asFragment, container} = render(<Header />);
 
 		expect(container.querySelector('header')).toBeInTheDocument();
-		expect(asFragment).toMatchSnapshot();
+		expect(asFragment()).toMatchSnapshot();
 	});
 });
