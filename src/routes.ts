@@ -1,5 +1,5 @@
 export const appRoutes = {
 	home: '/',
-	categories: (vendor: string, model: string) =>
-		`/${vendor.toLowerCase()}/${model.toLowerCase().replace(/\s/g, '-')}`,
+	categories: (brand: string, model: string) =>
+		`/${brand.toLowerCase()}/${model.toLowerCase().replace(/\s/g, '-')}`,
 };

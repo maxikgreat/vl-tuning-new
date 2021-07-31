@@ -1,52 +1,50 @@
-import {Dispatch, SetStateAction, useEffect, useState, VFC} from 'react';
+import {Dispatch, FC, SetStateAction, useEffect, useState} from 'react';
 import Select, {ActionMeta, OptionTypeBase} from 'react-select';
 import {useRouter} from 'next/router';
 
+import {Brand, CarItem, useCarItemsByBrandQuery} from 'apollo/types';
 import {appRoutes} from 'src/routes';
+import {Loader} from 'components/Loader';
 
-const vendors = ['Audi', 'BMW', 'Tesla'] as const;
+const transformBrandOptions = (brands: string[]): OptionTypeBase[] =>
+	brands.map(brand => ({label: brand, value: brand}));
 
-type Models = Record<typeof vendors[number], string[]>
+const transformModelOptions = (carItems?: CarItemByBrand[]): OptionTypeBase[] => {
+	if (!Array.isArray(carItems)) {
+		return [];
+	}
 
-const models: Models = {
-	Audi: ['A1', 'A2', 'A3'],
-	BMW: ['Z4', '3', '5'],
-	Tesla: ['Model X'],
+	return carItems.map(({id, model, productionYear}) => ({label: `${model} (${productionYear})`, value: id}));
 };
 
-interface VendorOption extends OptionTypeBase {
-  label: typeof vendors[number];
-  value: typeof vendors[number];
+type CarItemByBrand = Pick<CarItem, 'id' | 'model' | 'productionYear'>;
+
+interface MainSelectsProps {
+	brands: Brand[]
 }
 
-interface ModelOption extends OptionTypeBase {
-  label: string;
-  value: string;
-}
-
-const getVendorOptions = (): VendorOption[] =>
-	vendors.map(vendor => ({label: vendor, value: vendor}));
-
-const getModelsOptions = (vendor: typeof vendors[number]): ModelOption[] =>
-	models[vendor].map(model => ({label: model, value: model}));
-
-export const MainSelects: VFC = () => {
+export const MainSelects: FC<MainSelectsProps> = ({brands}) => {
 	const {push} = useRouter();
 
-	const [vendor, setVendor] = useState<string | undefined>();
+	const [brand, setBrand] = useState<Brand | undefined>();
 	const [model, setModel] = useState<string | undefined>();
 
+	const {data, error, loading} = useCarItemsByBrandQuery({
+		variables: {brand},
+		skip: !brand,
+	});
+
 	useEffect(() => {
-		if (!vendor || !model) {
+		if (!brand || !model) {
 			return;
 		}
 
-		push(appRoutes.categories(vendor, model));
-	}, [vendor, model, setVendor, setModel, push]);
+		push(appRoutes.categories(brand, model));
+	}, [brand, model, setBrand, setModel, push]);
 
-	function onChangeHandler<T extends OptionTypeBase>(
+	function onChangeHandler<T extends OptionTypeBase, K>(
 		value: T | null,
-		setValue: Dispatch<SetStateAction<string | undefined>>,
+		setValue: Dispatch<SetStateAction<K | undefined>>,
 		action: ActionMeta<T>,
 	) {
 		if (!value) {
@@ -59,11 +57,11 @@ export const MainSelects: VFC = () => {
 		}
 	}
 
-	const onChangeVendorHandler = (value: VendorOption | null, action: ActionMeta<VendorOption>) => {
-		onChangeHandler(value, setVendor, action);
+	const onChangeVendorHandler = (value: OptionTypeBase | null, action: ActionMeta<OptionTypeBase>) => {
+		onChangeHandler(value, setBrand, action);
 	};
 
-	const onChangeModelHandler = (value: ModelOption | null, action: ActionMeta<ModelOption>) => {
+	const onChangeModelHandler = (value: OptionTypeBase | null, action: ActionMeta<OptionTypeBase>) => {
 		onChangeHandler(value, setModel, action);
 	};
 
@@ -74,24 +72,36 @@ export const MainSelects: VFC = () => {
 			<Select
 				isClearable
 				name="vendor"
-				options={getVendorOptions()}
+				options={transformBrandOptions(brands)}
 				onChange={onChangeVendorHandler}
 				noOptionsMessage={noOptionMessageHandler}
 				placeholder="Выбери марку авто"
 				className="mb-3 text-xl sm:text-2xl md:text-3xl"
 				classNamePrefix="main-select"
 			/>
-			{vendor && (
-				<Select
-					isClearable
-					name="model"
-					options={getModelsOptions(vendor as typeof vendors[number])}
-					onChange={onChangeModelHandler}
-					noOptionsMessage={noOptionMessageHandler}
-					placeholder="Выбери модель авто"
-					className="text-xl sm:text-2xl md:text-3xl"
-					classNamePrefix="main-select"
-				/>
+			{brand && (
+				<>
+					{loading && !error && (
+						<Loader />
+					)}
+
+					{!loading && !error && data && (
+						<Select
+							isClearable
+							name="model"
+							options={transformModelOptions(data.carItems)}
+							onChange={onChangeModelHandler}
+							noOptionsMessage={noOptionMessageHandler}
+							placeholder="Выбери модель авто"
+							className="text-xl sm:text-2xl md:text-3xl"
+							classNamePrefix="main-select"
+						/>
+					)}
+
+					{!loading && error && !data && (
+						<h1>Error</h1>
+					)}
+				</>
 			)}
 		</form>
 	);
