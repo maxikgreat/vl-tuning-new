@@ -5,7 +5,8 @@ export const CarItemsByBrand = gql`
         carItems(where: {brand: $brand}) {
             id
             model
-            productionYear
+            yearStart
+            yearEnd
         }
     }
 `;

@@ -1,5 +1,10 @@
+const buildCategoriesRoute = (brand: string, model: string, year: string) => {
+	const yearTransformed = year.replace(/\s/g, '');
+
+	return `/${brand}/${model}/${yearTransformed}`;
+};
+
 export const appRoutes = {
 	home: '/',
-	categories: (brand: string, model: string) =>
-		`/${brand.toLowerCase()}/${model.toLowerCase().replace(/\s/g, '-')}`,
+	categories: (brand: string, model: string, year: string) => buildCategoriesRoute(brand, model, year),
 };

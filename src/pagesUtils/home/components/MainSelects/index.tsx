@@ -14,20 +14,43 @@ const transformModelOptions = (carItems?: CarItemByBrand[]): OptionTypeBase[] =>
 		return [];
 	}
 
-	return carItems.map(({id, model, productionYear}) => ({label: `${model} (${productionYear})`, value: id}));
+	return carItems.map(({id, model, yearStart, yearEnd}) => {
+		const year = (yearEnd ? `${yearStart} - ${yearEnd}` : yearStart).toString();
+
+		const label = `${model} (${year})`;
+		const value: ModelWithYearState = {
+			id,
+			model,
+			year,
+		};
+
+		return {label, value};
+	});
 };
 
-type CarItemByBrand = Pick<CarItem, 'id' | 'model' | 'productionYear'>;
+type CarItemByBrand = Pick<CarItem, 'id' | 'model' | 'yearStart' | 'yearEnd'>;
+
+interface OnChangeHandlerPayload<T, K> {
+  value: T | null,
+  setValue: Dispatch<SetStateAction<K | undefined>>,
+  action: ActionMeta<T>,
+}
 
 interface MainSelectsProps {
-	brands: Brand[]
+  brands: Brand[]
+}
+
+interface ModelWithYearState {
+	id: string;
+	model: string;
+	year: string;
 }
 
 export const MainSelects: FC<MainSelectsProps> = ({brands}) => {
 	const {push} = useRouter();
 
 	const [brand, setBrand] = useState<Brand | undefined>();
-	const [model, setModel] = useState<string | undefined>();
+	const [modelWithYear, setModelWithYear] = useState<ModelWithYearState | undefined>();
 
 	const {data, error, loading} = useCarItemsByBrandQuery({
 		variables: {brand},
@@ -35,18 +58,20 @@ export const MainSelects: FC<MainSelectsProps> = ({brands}) => {
 	});
 
 	useEffect(() => {
-		if (!brand || !model) {
+		if (!brand || !modelWithYear) {
 			return;
 		}
 
-		push(appRoutes.categories(brand, model));
-	}, [brand, model, setBrand, setModel, push]);
+		const {model, year} = modelWithYear;
 
-	function onChangeHandler<T extends OptionTypeBase, K>(
-		value: T | null,
-		setValue: Dispatch<SetStateAction<K | undefined>>,
-		action: ActionMeta<T>,
-	) {
+		push(appRoutes.categories(brand, model, year));
+	}, [brand, modelWithYear, setBrand, setModelWithYear, push]);
+
+	function onChangeHandler<T extends OptionTypeBase, K>({
+		value,
+		setValue,
+		action,
+	}: OnChangeHandlerPayload<T, K>) {
 		if (!value) {
 			setValue(undefined);
 			return;
@@ -58,17 +83,26 @@ export const MainSelects: FC<MainSelectsProps> = ({brands}) => {
 	}
 
 	const onChangeVendorHandler = (value: OptionTypeBase | null, action: ActionMeta<OptionTypeBase>) => {
-		onChangeHandler(value, setBrand, action);
+		onChangeHandler({
+			value,
+			setValue: setBrand,
+			action,
+		});
 	};
 
 	const onChangeModelHandler = (value: OptionTypeBase | null, action: ActionMeta<OptionTypeBase>) => {
-		onChangeHandler(value, setModel, action);
+		onChangeHandler({
+			value,
+			setValue: setModelWithYear,
+			action,
+		});
 	};
 
 	const noOptionMessageHandler = () => 'Нет совпадений';
 
 	return (
-		<form data-testid="form" className="main-select absolute left-1/2 transform top-40p -translate-x-2/4 w-10/12 sm:w-3/5">
+		<form data-testid="form"
+			className="main-select absolute left-1/2 transform top-40p -translate-x-2/4 w-10/12 sm:w-3/5">
 			<Select
 				isClearable
 				name="vendor"
@@ -82,7 +116,7 @@ export const MainSelects: FC<MainSelectsProps> = ({brands}) => {
 			{brand && (
 				<>
 					{loading && !error && (
-						<Loader />
+						<Loader/>
 					)}
 
 					{!loading && !error && data && (

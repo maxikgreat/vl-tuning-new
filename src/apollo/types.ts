@@ -674,8 +674,9 @@ export type CarItem = Node & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   model: Scalars['String'];
-  productionYear: Scalars['String'];
   extras?: Maybe<Scalars['String']>;
+  yearStart: Scalars['Int'];
+  yearEnd?: Maybe<Scalars['Int']>;
   /** User that created this document */
   createdBy?: Maybe<User>;
   /** User that last updated this document */
@@ -739,8 +740,9 @@ export type CarItemCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   model: Scalars['String'];
-  productionYear: Scalars['String'];
   extras?: Maybe<Scalars['String']>;
+  yearStart: Scalars['Int'];
+  yearEnd?: Maybe<Scalars['Int']>;
   category: Category;
   brand: Brand;
   vendor: Vendor;
@@ -862,25 +864,6 @@ export type CarItemManyWhereInput = {
   model_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   model_not_ends_with?: Maybe<Scalars['String']>;
-  productionYear?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  productionYear_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  productionYear_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  productionYear_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  productionYear_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  productionYear_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  productionYear_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  productionYear_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  productionYear_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  productionYear_not_ends_with?: Maybe<Scalars['String']>;
   extras?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   extras_not?: Maybe<Scalars['String']>;
@@ -900,6 +883,36 @@ export type CarItemManyWhereInput = {
   extras_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   extras_not_ends_with?: Maybe<Scalars['String']>;
+  yearStart?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  yearStart_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  yearStart_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  yearStart_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  yearStart_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  yearStart_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  yearStart_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  yearStart_gte?: Maybe<Scalars['Int']>;
+  yearEnd?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  yearEnd_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  yearEnd_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  yearEnd_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  yearEnd_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  yearEnd_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  yearEnd_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  yearEnd_gte?: Maybe<Scalars['Int']>;
   createdBy?: Maybe<UserWhereInput>;
   updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
@@ -937,10 +950,12 @@ export enum CarItemOrderByInput {
   PublishedAtDesc = 'publishedAt_DESC',
   ModelAsc = 'model_ASC',
   ModelDesc = 'model_DESC',
-  ProductionYearAsc = 'productionYear_ASC',
-  ProductionYearDesc = 'productionYear_DESC',
   ExtrasAsc = 'extras_ASC',
   ExtrasDesc = 'extras_DESC',
+  YearStartAsc = 'yearStart_ASC',
+  YearStartDesc = 'yearStart_DESC',
+  YearEndAsc = 'yearEnd_ASC',
+  YearEndDesc = 'yearEnd_DESC',
   CategoryAsc = 'category_ASC',
   CategoryDesc = 'category_DESC',
   BrandAsc = 'brand_ASC',
@@ -951,8 +966,9 @@ export enum CarItemOrderByInput {
 
 export type CarItemUpdateInput = {
   model?: Maybe<Scalars['String']>;
-  productionYear?: Maybe<Scalars['String']>;
   extras?: Maybe<Scalars['String']>;
+  yearStart?: Maybe<Scalars['Int']>;
+  yearEnd?: Maybe<Scalars['Int']>;
   category?: Maybe<Category>;
   brand?: Maybe<Brand>;
   vendor?: Maybe<Vendor>;
@@ -977,8 +993,9 @@ export type CarItemUpdateManyInlineInput = {
 
 export type CarItemUpdateManyInput = {
   model?: Maybe<Scalars['String']>;
-  productionYear?: Maybe<Scalars['String']>;
   extras?: Maybe<Scalars['String']>;
+  yearStart?: Maybe<Scalars['Int']>;
+  yearEnd?: Maybe<Scalars['Int']>;
   category?: Maybe<Category>;
   brand?: Maybe<Brand>;
   vendor?: Maybe<Vendor>;
@@ -1120,25 +1137,6 @@ export type CarItemWhereInput = {
   model_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   model_not_ends_with?: Maybe<Scalars['String']>;
-  productionYear?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  productionYear_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  productionYear_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  productionYear_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  productionYear_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  productionYear_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  productionYear_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  productionYear_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  productionYear_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  productionYear_not_ends_with?: Maybe<Scalars['String']>;
   extras?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   extras_not?: Maybe<Scalars['String']>;
@@ -1158,6 +1156,36 @@ export type CarItemWhereInput = {
   extras_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   extras_not_ends_with?: Maybe<Scalars['String']>;
+  yearStart?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  yearStart_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  yearStart_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  yearStart_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  yearStart_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  yearStart_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  yearStart_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  yearStart_gte?: Maybe<Scalars['Int']>;
+  yearEnd?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  yearEnd_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  yearEnd_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  yearEnd_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  yearEnd_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  yearEnd_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  yearEnd_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  yearEnd_gte?: Maybe<Scalars['Int']>;
   createdBy?: Maybe<UserWhereInput>;
   updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
@@ -1428,6 +1456,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyCarItemsConnection)
    */
   unpublishManyCarItems: BatchPayload;
+  /** Create one productionYear */
+  createProductionYear?: Maybe<ProductionYear>;
+  /** Update one productionYear */
+  updateProductionYear?: Maybe<ProductionYear>;
+  /** Delete one productionYear from _all_ existing stages. Returns deleted document. */
+  deleteProductionYear?: Maybe<ProductionYear>;
+  /** Upsert one productionYear */
+  upsertProductionYear?: Maybe<ProductionYear>;
+  /** Publish one productionYear */
+  publishProductionYear?: Maybe<ProductionYear>;
+  /** Unpublish one productionYear from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishProductionYear?: Maybe<ProductionYear>;
+  /** Update many ProductionYear documents */
+  updateManyProductionYearsConnection: ProductionYearConnection;
+  /** Delete many ProductionYear documents, return deleted documents */
+  deleteManyProductionYearsConnection: ProductionYearConnection;
+  /** Publish many ProductionYear documents */
+  publishManyProductionYearsConnection: ProductionYearConnection;
+  /** Find many ProductionYear documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyProductionYearsConnection: ProductionYearConnection;
+  /**
+   * Update many productionYears
+   * @deprecated Please use the new paginated many mutation (updateManyProductionYearsConnection)
+   */
+  updateManyProductionYears: BatchPayload;
+  /**
+   * Delete many ProductionYear documents
+   * @deprecated Please use the new paginated many mutation (deleteManyProductionYearsConnection)
+   */
+  deleteManyProductionYears: BatchPayload;
+  /**
+   * Publish many ProductionYear documents
+   * @deprecated Please use the new paginated many mutation (publishManyProductionYearsConnection)
+   */
+  publishManyProductionYears: BatchPayload;
+  /**
+   * Unpublish many ProductionYear documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyProductionYearsConnection)
+   */
+  unpublishManyProductionYears: BatchPayload;
 };
 
 
@@ -1649,6 +1717,108 @@ export type MutationUnpublishManyCarItemsArgs = {
   from?: Array<Stage>;
 };
 
+
+export type MutationCreateProductionYearArgs = {
+  data: ProductionYearCreateInput;
+};
+
+
+export type MutationUpdateProductionYearArgs = {
+  where: ProductionYearWhereUniqueInput;
+  data: ProductionYearUpdateInput;
+};
+
+
+export type MutationDeleteProductionYearArgs = {
+  where: ProductionYearWhereUniqueInput;
+};
+
+
+export type MutationUpsertProductionYearArgs = {
+  where: ProductionYearWhereUniqueInput;
+  upsert: ProductionYearUpsertInput;
+};
+
+
+export type MutationPublishProductionYearArgs = {
+  where: ProductionYearWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishProductionYearArgs = {
+  where: ProductionYearWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyProductionYearsConnectionArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  data: ProductionYearUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyProductionYearsConnectionArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyProductionYearsConnectionArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyProductionYearsConnectionArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyProductionYearsArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  data: ProductionYearUpdateManyInput;
+};
+
+
+export type MutationDeleteManyProductionYearsArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+};
+
+
+export type MutationPublishManyProductionYearsArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyProductionYearsArgs = {
+  where?: Maybe<ProductionYearManyWhereInput>;
+  from?: Array<Stage>;
+};
+
 /** An object with an ID */
 export type Node = {
   /** The id of the object. */
@@ -1670,6 +1840,416 @@ export type PageInfo = {
   endCursor?: Maybe<Scalars['String']>;
   /** Number of items in the current page. */
   pageSize?: Maybe<Scalars['Int']>;
+};
+
+export type ProductionYear = Node & {
+  __typename?: 'ProductionYear';
+  /** System stage field */
+  stage: Stage;
+  /** Get the document in other stages */
+  documentInStages: Array<ProductionYear>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  startFrom: Scalars['Int'];
+  endTo?: Maybe<Scalars['Int']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  /** List of ProductionYear versions */
+  history: Array<Version>;
+};
+
+
+export type ProductionYearDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type ProductionYearCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ProductionYearUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ProductionYearPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ProductionYearHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+export type ProductionYearConnectInput = {
+  /** Document to connect */
+  where: ProductionYearWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
+/** A connection to a list of items. */
+export type ProductionYearConnection = {
+  __typename?: 'ProductionYearConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<ProductionYearEdge>;
+  aggregate: Aggregate;
+};
+
+export type ProductionYearCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  startFrom: Scalars['Int'];
+  endTo?: Maybe<Scalars['Int']>;
+};
+
+export type ProductionYearCreateManyInlineInput = {
+  /** Create and connect multiple existing ProductionYear documents */
+  create?: Maybe<Array<ProductionYearCreateInput>>;
+  /** Connect multiple existing ProductionYear documents */
+  connect?: Maybe<Array<ProductionYearWhereUniqueInput>>;
+};
+
+export type ProductionYearCreateOneInlineInput = {
+  /** Create and connect one ProductionYear document */
+  create?: Maybe<ProductionYearCreateInput>;
+  /** Connect one existing ProductionYear document */
+  connect?: Maybe<ProductionYearWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type ProductionYearEdge = {
+  __typename?: 'ProductionYearEdge';
+  /** The item at the end of the edge. */
+  node: ProductionYear;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
+/** Identifies documents */
+export type ProductionYearManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<ProductionYearWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<ProductionYearWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<ProductionYearWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  startFrom?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  startFrom_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  startFrom_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  startFrom_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  startFrom_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  startFrom_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  startFrom_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  startFrom_gte?: Maybe<Scalars['Int']>;
+  endTo?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  endTo_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  endTo_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  endTo_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  endTo_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  endTo_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  endTo_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  endTo_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+};
+
+export enum ProductionYearOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  StartFromAsc = 'startFrom_ASC',
+  StartFromDesc = 'startFrom_DESC',
+  EndToAsc = 'endTo_ASC',
+  EndToDesc = 'endTo_DESC'
+}
+
+export type ProductionYearUpdateInput = {
+  startFrom?: Maybe<Scalars['Int']>;
+  endTo?: Maybe<Scalars['Int']>;
+};
+
+export type ProductionYearUpdateManyInlineInput = {
+  /** Create and connect multiple ProductionYear documents */
+  create?: Maybe<Array<ProductionYearCreateInput>>;
+  /** Connect multiple existing ProductionYear documents */
+  connect?: Maybe<Array<ProductionYearConnectInput>>;
+  /** Override currently-connected documents with multiple existing ProductionYear documents */
+  set?: Maybe<Array<ProductionYearWhereUniqueInput>>;
+  /** Update multiple ProductionYear documents */
+  update?: Maybe<Array<ProductionYearUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ProductionYear documents */
+  upsert?: Maybe<Array<ProductionYearUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple ProductionYear documents */
+  disconnect?: Maybe<Array<ProductionYearWhereUniqueInput>>;
+  /** Delete multiple ProductionYear documents */
+  delete?: Maybe<Array<ProductionYearWhereUniqueInput>>;
+};
+
+export type ProductionYearUpdateManyInput = {
+  startFrom?: Maybe<Scalars['Int']>;
+  endTo?: Maybe<Scalars['Int']>;
+};
+
+export type ProductionYearUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: ProductionYearWhereInput;
+  /** Update many input */
+  data: ProductionYearUpdateManyInput;
+};
+
+export type ProductionYearUpdateOneInlineInput = {
+  /** Create and connect one ProductionYear document */
+  create?: Maybe<ProductionYearCreateInput>;
+  /** Update single ProductionYear document */
+  update?: Maybe<ProductionYearUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ProductionYear document */
+  upsert?: Maybe<ProductionYearUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing ProductionYear document */
+  connect?: Maybe<ProductionYearWhereUniqueInput>;
+  /** Disconnect currently connected ProductionYear document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected ProductionYear document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type ProductionYearUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: ProductionYearWhereUniqueInput;
+  /** Document to update */
+  data: ProductionYearUpdateInput;
+};
+
+export type ProductionYearUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ProductionYearCreateInput;
+  /** Update document if it exists */
+  update: ProductionYearUpdateInput;
+};
+
+export type ProductionYearUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: ProductionYearWhereUniqueInput;
+  /** Upsert data */
+  data: ProductionYearUpsertInput;
+};
+
+/** Identifies documents */
+export type ProductionYearWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<ProductionYearWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<ProductionYearWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<ProductionYearWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  startFrom?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  startFrom_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  startFrom_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  startFrom_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  startFrom_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  startFrom_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  startFrom_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  startFrom_gte?: Maybe<Scalars['Int']>;
+  endTo?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  endTo_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  endTo_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  endTo_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  endTo_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  endTo_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  endTo_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  endTo_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+};
+
+/** References ProductionYear record uniquely */
+export type ProductionYearWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
 };
 
 export type PublishLocaleInput = {
@@ -1705,6 +2285,14 @@ export type Query = {
   carItemsConnection: CarItemConnection;
   /** Retrieve document version */
   carItemVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple productionYears */
+  productionYears: Array<ProductionYear>;
+  /** Retrieve a single productionYear */
+  productionYear?: Maybe<ProductionYear>;
+  /** Retrieve multiple productionYears using the Relay connection interface */
+  productionYearsConnection: ProductionYearConnection;
+  /** Retrieve document version */
+  productionYearVersion?: Maybe<DocumentVersion>;
 };
 
 
@@ -1820,6 +2408,44 @@ export type QueryCarItemsConnectionArgs = {
 
 
 export type QueryCarItemVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryProductionYearsArgs = {
+  where?: Maybe<ProductionYearWhereInput>;
+  orderBy?: Maybe<ProductionYearOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryProductionYearArgs = {
+  where: ProductionYearWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryProductionYearsConnectionArgs = {
+  where?: Maybe<ProductionYearWhereInput>;
+  orderBy?: Maybe<ProductionYearOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryProductionYearVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -2347,7 +2973,7 @@ export type CarItemsByBrandQuery = (
   { __typename?: 'Query' }
   & { carItems: Array<(
     { __typename?: 'CarItem' }
-    & Pick<CarItem, 'id' | 'model' | 'productionYear'>
+    & Pick<CarItem, 'id' | 'model' | 'yearStart' | 'yearEnd'>
   )> }
 );
 
@@ -2357,7 +2983,8 @@ export const CarItemsByBrandDocument = gql`
   carItems(where: {brand: $brand}) {
     id
     model
-    productionYear
+    yearStart
+    yearEnd
   }
 }
     `;
