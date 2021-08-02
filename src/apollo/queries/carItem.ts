@@ -10,3 +10,11 @@ export const CarItemsByBrand = gql`
         }
     }
 `;
+
+export const CategoriesByCarItem = gql`
+    query CategoriesByCarItem($brand: Brand, $model: String, $yearStart: Int, $yearEnd: Int) {
+        carItems(where: {brand: $brand, model: $model, yearStart: $yearStart, yearEnd: $yearEnd}) {
+            category
+        }
+    }
+`;

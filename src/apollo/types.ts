@@ -2977,6 +2977,22 @@ export type CarItemsByBrandQuery = (
   )> }
 );
 
+export type CategoriesByCarItemQueryVariables = Exact<{
+  brand?: Maybe<Brand>;
+  model?: Maybe<Scalars['String']>;
+  yearStart?: Maybe<Scalars['Int']>;
+  yearEnd?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type CategoriesByCarItemQuery = (
+  { __typename?: 'Query' }
+  & { carItems: Array<(
+    { __typename?: 'CarItem' }
+    & Pick<CarItem, 'category'>
+  )> }
+);
+
 
 export const CarItemsByBrandDocument = gql`
     query CarItemsByBrand($brand: Brand) {
@@ -3016,3 +3032,43 @@ export function useCarItemsByBrandLazyQuery(baseOptions?: Apollo.LazyQueryHookOp
 export type CarItemsByBrandQueryHookResult = ReturnType<typeof useCarItemsByBrandQuery>;
 export type CarItemsByBrandLazyQueryHookResult = ReturnType<typeof useCarItemsByBrandLazyQuery>;
 export type CarItemsByBrandQueryResult = Apollo.QueryResult<CarItemsByBrandQuery, CarItemsByBrandQueryVariables>;
+export const CategoriesByCarItemDocument = gql`
+    query CategoriesByCarItem($brand: Brand, $model: String, $yearStart: Int, $yearEnd: Int) {
+  carItems(
+    where: {brand: $brand, model: $model, yearStart: $yearStart, yearEnd: $yearEnd}
+  ) {
+    category
+  }
+}
+    `;
+
+/**
+ * __useCategoriesByCarItemQuery__
+ *
+ * To run a query within a React component, call `useCategoriesByCarItemQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCategoriesByCarItemQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCategoriesByCarItemQuery({
+ *   variables: {
+ *      brand: // value for 'brand'
+ *      model: // value for 'model'
+ *      yearStart: // value for 'yearStart'
+ *      yearEnd: // value for 'yearEnd'
+ *   },
+ * });
+ */
+export function useCategoriesByCarItemQuery(baseOptions?: Apollo.QueryHookOptions<CategoriesByCarItemQuery, CategoriesByCarItemQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CategoriesByCarItemQuery, CategoriesByCarItemQueryVariables>(CategoriesByCarItemDocument, options);
+      }
+export function useCategoriesByCarItemLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CategoriesByCarItemQuery, CategoriesByCarItemQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CategoriesByCarItemQuery, CategoriesByCarItemQueryVariables>(CategoriesByCarItemDocument, options);
+        }
+export type CategoriesByCarItemQueryHookResult = ReturnType<typeof useCategoriesByCarItemQuery>;
+export type CategoriesByCarItemLazyQueryHookResult = ReturnType<typeof useCategoriesByCarItemLazyQuery>;
+export type CategoriesByCarItemQueryResult = Apollo.QueryResult<CategoriesByCarItemQuery, CategoriesByCarItemQueryVariables>;
